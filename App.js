@@ -1,21 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { NativeRouter as Router, Route, Switch } from 'react-router-native'
+import { Container, Header, Body, Title } from 'native-base'
+import ItemList from './components/ItemList'
+import ItemInfo from './components/ItemInfo'
 
-export default function App() {
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Container>
+      <Header>
+        <Body><Title>Rick and Morty Wiki</Title></Body>
+      </Header>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={ItemList} />
+          <Route path="/character/:id" component={ItemInfo} />
+        </Switch>
+      </Router>
+    </Container>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App
